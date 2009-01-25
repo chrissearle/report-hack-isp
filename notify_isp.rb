@@ -15,12 +15,13 @@ SMTP_SERVER = 'localhost'
 SMTP_PORT   = 25
 
 #EMAIL message setup
-EMAIL_FROM    = 'ADD_YOUR_RETURN_EMAIL_HERE' ####### ADD YOUR ACTUALL EMAIL ADDRESS HERE ##########
-EMAIL_SUBJECT = 'Security Alert - Your Server May Have Been Hacked!'
+HOSTNAME = `hostname -s`.strip
+EMAIL_FROM = "abuse+" + HOSTNAME + "@chrissearle.org"
+EMAIL_SUBJECT = 'Security Alert - viral/bot/hack login attempt detected from your machine/network'
 # Leave empty to not send a mail to a CC address
 CC = ''
 # Same as for the CC address, you probably only need one of these
-BCC = ''
+BCC = EMAIL_FROM
 
 #LOG_FILE = SSHD's log file ###### UPDATE THIS TO YOUR ACTUAL SSHD LOG FILE LOCATION #####
 LOG_FILE = '/var/log/sshd/*'  
@@ -69,15 +70,19 @@ Date: #{time2str(Time.now)}
 
 To whom it may concern.
 
+This is an automated message but replies will be read.
+
 We have detected a hack attempt originating from your network from ip: #{offender}
 
 This suggests that the above server has been compromised and is a participant in a botnet.
 
 This means that this server has been hacked and now, in turn, is attempting to hack other servers on the Internet.
 
-This IP address has now been blacklisted to protect our service from further brute force attacks. Furthermore, this IP address has been uploaded to DenyHosts' centralised database. This means that this IP address will also shortly be blacklisted by any member who queries DenyHosts' central database.
+You have been sent this mail based on WHOIS and DNS information. In most cases these mails are sent to ISPs regarding home user's machines. Our aim in sending these messages is to assist ISPs in flagging viral/bot behaviour to users so that they can install updated protection.
 
-An excerpt from our logfiles. All times shown are in #{TIME_LOCALE}:
+This IP address has now been blacklisted to protect our service from further brute force attacks. Furthermore, this IP address has been uploaded to DenyHosts' centralised database. This means that this IP address will also shortly be blacklisted by any member who queries DenyHosts' central database. For more information on this see http://denyhosts.sourceforge.net/
+
+An excerpt from our logfiles is shown below. All times shown are in #{TIME_LOCALE}:
 
 #{evidence}
 
