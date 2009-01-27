@@ -24,7 +24,7 @@ CC = ''
 BCC = EMAIL_FROM
 
 #LOG_FILE = SSHD's log file ###### UPDATE THIS TO YOUR ACTUAL SSHD LOG FILE LOCATION #####
-LOG_FILE = '/var/log/sshd/*'  
+LOG_FILE = '/var/log/auth.log'  
 
 #misc
 TIME_LOCALE = 'GMT+1'
